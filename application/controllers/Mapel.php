@@ -3,15 +3,6 @@
     class Mapel extends CI_Controller
     {
 
-        function __construct()
-        {
-            parent::__construct();
-            $this->load->model('Model_mapel');
-            $this->load->helper('url');
-            
-
-        }
-
         function index()
         {
             $user = $this->session->userdata("nama");
@@ -86,7 +77,6 @@
     
                 $this->Model_mapel->update_data($where, $data);
                 $this->session->set_flashdata('pesan','Diubah');
-
     
                 redirect('mapel');
 

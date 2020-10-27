@@ -17,8 +17,6 @@
                                     <ul id="navigation">
                                         <li><a href="<?=base_url()?>">Home</a></li>
                                         <li><a href="<?=base_url('Home/pelajaran')?>">Pelajaran</a></li>
-                                        <li><a href="<?=base_url('Home/tentang')?>">Tentang</a></li>
-                                        <li><a href="<?=base_url('Home/kontak')?>">kontak</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -31,8 +29,10 @@
                                     <a class="dropdown-toggle text-white" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="flaticon-user text-white"></i>  <span class="text-white"></span>
                                     </a>
-
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                            <?php if($_SESSION['nama'] == "admin"){?>
+                                            <a class="dropdown-item" href="<?= base_url('admin')?>">Admin</a>
+                                                <?php }?>
                                             <a class="dropdown-item" href="<?= base_url('Home/profil')?>">profil</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="<?= base_url('Login/logout')?>">Keluar</a>
@@ -90,18 +90,21 @@
         <div class="popup_box ">
             <div class="popup_inner">
                 <div class="logo text-center">
-                    <a href="#">
+                    <a href="#">    
                         <img src="<?=base_url('assets/edumark/img/form-logo.png')?>" alt="">
                     </a>
                 </div>
                 <h3>Registrasi</h3>
                 <div class="row">
-                <div class="col-xl-12 col-md-12">
+                    <label> Data Registrasi</label>
+                    <div class="col-xl-12 col-md-12">
                         <input type="text" name="nama" placeholder="Nama">
                     </div>
                     <div class="col-xl-12 col-md-12">
                         <input type="number" name="hp" placeholder="hp">
                     </div>
+
+                <label> Data Login</label>
                     <div class="col-xl-12 col-md-12">
                         <input type="text" name="user" placeholder="Username">
                     </div>
@@ -111,7 +114,15 @@
                     <div class="col-xl-12 col-md-12">
                         <input type="password" name="pass" placeholder="Password">
                     </div>
-                    <div class="col-xl-12">
+                    <div class="col-xl-12 col-md-12">
+                        <select class="form-control" name="tingkatan">
+                            <option value="Beginner" class="focus">Beginner</option>
+                            <option value="Advanced">Advanced</option>
+                            <option value="Expert">Expert</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="col-xl-12 col-md-12 mt-3">
                         <input type="submit" class="boxed_btn_orange" value="Register">
                     </div>
                 </div>

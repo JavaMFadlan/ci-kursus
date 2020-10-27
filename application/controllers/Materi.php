@@ -3,16 +3,6 @@
     class Materi extends CI_Controller
     {
 
-        function __construct()
-        {
-            parent::__construct();
-            $this->load->model('Model_materi');
-            $this->load->model('Model_mapel');
-            $this->load->helper('url');
-            
-
-        }
-
         function index()
         {
             $user = $this->session->userdata("nama");
@@ -26,7 +16,6 @@
             else {
                     redirect(base_url());
                 }
-            
         }
 
         function tambah()

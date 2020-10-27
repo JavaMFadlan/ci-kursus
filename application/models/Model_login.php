@@ -17,7 +17,7 @@ class Model_login extends CI_Model
     {
         $query = $this->db->get_where('login', $where);
         $ret = $query->row();
-        return $ret->username;
+        return $ret;
     }
     public function login_where_id($where)
     {

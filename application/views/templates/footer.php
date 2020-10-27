@@ -1,9 +1,5 @@
         <script>
             CKEDITOR.replaceAll( 'ckeditor1' );
-            CKEDITOR.editorconfig = function {
-                config.ShiftEnterMode = CKEDITOR.ENTER_P;
-                config.autoParagraph = false;
-            }
         </script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="<?php echo base_url("assets/js/bootstrap.bundle.min.js"); ?>"></script>

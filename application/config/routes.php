@@ -53,8 +53,6 @@ $route['default_controller'] = 'Home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['Home/pelajaran/(:any)'] = 'Home/pelajaran/$1';
-$route['guru'] = 'Guru';
 $route['admin'] = 'Admin';
 $route['login'] = 'Login';
 $route['materi'] = 'Materi';

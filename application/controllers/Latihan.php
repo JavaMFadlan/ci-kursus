@@ -3,16 +3,6 @@
     class Latihan extends CI_Controller
     {
 
-        function __construct()
-        {
-            parent::__construct();
-            $this->load->model('Model_materi');
-            $this->load->model('Model_latihan');
-            $this->load->helper('url');
-            
-
-        }
-
         function index()
         {
             $user = $this->session->userdata("nama");
