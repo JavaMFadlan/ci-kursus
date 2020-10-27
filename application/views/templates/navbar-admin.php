@@ -21,7 +21,7 @@
             <div class="sb-sidenav-menu">
                 <div class="nav">
                     <div class="sb-sidenav-menu-heading">Home</div>
-                    <a class="nav-link" href="<?= base_url('admin')?>">
+                    <a class="nav-link <?= ($this->uri->segment(1) == 'admin')? 'active' : ''?>" href="<?= base_url('admin')?>">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                         Index
                     </a>
@@ -33,10 +33,19 @@
                     </a>
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                         <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="<?= base_url('Mapel');?>">Mata pelajaran</a>
-                            <a class="nav-link" href="<?= base_url('Materi');?>">Materi</a>
-                            <a class="nav-link" href="<?= base_url('Latihan');?>">Latihan</a>
+                            <a class="nav-link <?= ($this->uri->segment(1) == 'Mapel')? 'active' : ''?>" href="<?= base_url('Mapel');?>">Mata pelajaran</a>
+                            <?php if ($_SESSION['role'] == 'guru') {
+                            ?>
+                            <a class="nav-link <?= ($this->uri->segment(1) == 'Materi')? 'active' : ''?>" href="<?= base_url('Materi');?>">Materi</a>
+                            <a class="nav-link <?= ($this->uri->segment(1) == 'Latihan')? 'active' : ''?>" href="<?= base_url('Latihan');?>">Latihan</a>
+                            <?php }?>
                         </nav>
+                    </div>
+                    <div class="sb-sidenav-menu-heading">
+                        <a class="nav-link <?= ($this->uri->segment(1) == 'guru')? 'active' : ''?>" href="<?= base_url('guru')?>">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Guru
+                        </a>
                     </div>
                 </div>
             </div>

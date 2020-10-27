@@ -15,8 +15,8 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="<?=base_url()?>">Home</a></li>
-                                        <li><a href="<?=base_url('Home/pelajaran')?>">Pelajaran</a></li>
+                                        <li><a class="<?= ($this->uri->segment(1) == '')? 'active' : ''?>" href="<?=base_url()?>">Home</a></li>
+                                        <li><a class="<?= ($this->uri->segment(2) == 'pelajaran')? 'active' : ''?>" href="<?=base_url('Home/pelajaran')?>">Pelajaran</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -33,7 +33,7 @@
                                             <?php if($_SESSION['nama'] == "admin"){?>
                                             <a class="dropdown-item" href="<?= base_url('admin')?>">Admin</a>
                                                 <?php }?>
-                                            <a class="dropdown-item" href="<?= base_url('Home/profil')?>">profil</a>
+                                            <a class="dropdown-item <?= ($this->uri->segment(1) == 'profil')? 'active' : ''?>" href="<?= base_url('Home/profil')?>">profil</a>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="<?= base_url('Login/logout')?>">Keluar</a>
                                         </div>
@@ -122,6 +122,7 @@
                         </select>
                     </div>
                     <br>
+                    <input type="hidden" name="role" value="siswa">
                     <div class="col-xl-12 col-md-12 mt-3">
                         <input type="submit" class="boxed_btn_orange" value="Register">
                     </div>

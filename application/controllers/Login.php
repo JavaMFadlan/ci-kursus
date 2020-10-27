@@ -13,10 +13,18 @@
                 );
             $cek = $this->Model_login->login($where)->num_rows();
             $row = $this->Model_login->login_where($where);
+            if ($row->role == 'siswa') {
+                $row_user = $this->Model_login->pengguna_where_id($row->id);
+            }
+            elseif ($row->role == 'guru') {
+                $row_user = $this->Model_login->guru_where_id($row->id);
+            }
             if($cek > 0){
     
                 $data_session = array(
-                    'id_pengguna' => $row->id_pengguna,
+                    'id' => $row->id,
+                    'id_user' => $row_user->id,
+                    'role' => $row->role,
                     'nama' => $row->username,
                     'email' => $email,
                     'status' => "login"
@@ -35,6 +43,7 @@
     
             }else{
                 echo '<script>alert("Salah Password Atau Username");</script>';
+                base_url();
             }
         }
 
@@ -50,29 +59,31 @@
             $user = $this->input->post('user');
             $email = $this->input->post('email');
             $pass = $this->input->post('pass');
-            $tingkatan = $this->input->post('optradio');
+            $tingkatan = $this->input->post('tingkatan');
+            $role = $this->input->post('role');
 
             $nama = $this->input->post('nama');
             $hp = $this->input->post('hp');
 
+            $data = array(
+                'username' => $user,
+                'email' => $email,
+                'password' => md5($pass),
+                'role' => $role
+                );
+
+            $this->Model_login->register($data);
+            $last_id = $this->db->insert_id();
+                
                $data1 = array(
+                'id_login' => $last_id,
                 'nama' => $nama,
                 'email' => $email,
                 'hp' => $hp,
-                'tingkatan' => $tingkatan
+                'tingkatan' => $tingkatan,
             );
 
             $this->Model_pengguna->simpan_data($data1);
-            $id = $this->db->insert_id();
-
-                $data = array(
-                    'id_pengguna' => $id,
-                    'username' => $user,
-                    'email' => $email,
-                    'password' => md5($pass)
-                    );
-
-            $this->Model_login->register($data);
             redirect(base_url());
         }
 

@@ -27,9 +27,15 @@ class Model_login extends CI_Model
     }
     public function pengguna_where_id($whereid)
     {
-        $query = $this->db->get_where('data_pengguna', $whereid);
+        $query = $this->db->get_where('data_pengguna', array('id_login' => $whereid));
         $ret = $query->row();
-        return $ret->id;
+        return $ret;
+    }
+    public function guru_where_id($whereid)
+    {
+        $query = $this->db->get_where('guru', array('id_login' => $whereid));
+        $ret = $query->row();
+        return $ret;
     }
     
 }

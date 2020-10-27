@@ -1,4 +1,4 @@
-    
+    <?php  var_dump($_SESSION);?>
 
     <!-- slider_area_start -->
     <div class="slider_area ">
