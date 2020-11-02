@@ -1,3 +1,6 @@
+<script>
+        CKEDITOR.replaceAll( 'ckeditor1' );
+        </script>
     <script src="<?=base_url('assets/edumark/js/vendor/modernizr-3.5.0.min.js')?>"></script>
     <script src="<?=base_url('assets/edumark/js/vendor/jquery-1.12.4.min.js')?>"></script>
     <script src="<?=base_url('assets/edumark/js/popper.min.js')?>"></script>

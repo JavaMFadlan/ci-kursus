@@ -23,6 +23,8 @@
 		<?php foreach ($guru as $row) { ?>
 		<form method="post" action="<?= base_url('guru/edit_aksi');?>">
 			<input type="hidden" name="id" value="<?= $row->id; ?>">
+			<input type="hidden" name="id_login" value="<?= $row->id_login; ?>">
+			<input type="hidden" name="role" value="<?= $row->role; ?>">
 			<div class="form-group">
 				<label>Nama </label>
 				<input type="text" name="nama" class="form-control" value="<?= $row->nama;?>">
@@ -55,10 +57,6 @@
 			<div class="form-group">
 				<label>Lulusan</label>
 				<input type="text" name="lulusan" class="form-control" value="<?= $row->lulusan;?>">
-			</div>
-			<div class="form-group">
-				<label>Pembayaran</label>
-				<input type="number" name="bayaran" class="form-control" value="<?= $row->bayaran;?>">
 			</div>
 			<button type="submit" class="btn btn-primary">Update data</button>
 			<a href="<?= base_url('guru'); ?>" class="btn btn-danger">Batal/Kembali</a>

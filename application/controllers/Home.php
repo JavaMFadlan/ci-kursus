@@ -14,11 +14,12 @@
         }
         function pelajaran()
         {
-            if (isset($_SESSION['id_pengguna'])) {
+            if (isset($_SESSION['id_user'])) {
                 $if = 1;
                 $data['mapel'] = $this->Model_mapel->tampil_data()->result();
-                $data['materi'] = $this->Model_pengguna->join_data($_SESSION['id_pengguna'], $if);
+                $data['materi'] = $this->Model_pengguna->join($_SESSION['id_user']);
                 $data['materiFooter'] = $this->Model_materi->tampil_data();
+                // var_dump($data['materi']);
                 $this->load->view('templates/header-index');
                 $this->load->view('templates/navbar-index');
                 $this->load->view('edumark/pelajaran', $data);
@@ -35,6 +36,7 @@
             if (isset($_SESSION['nama'])) {
             $where = array('id' => $id);
             $data['materi'] = $this->Model_materi->show_data($where)->result();
+            $data['stop'] = $this->Model_materi->stop_data($_SESSION['id_user'],$id)->result_array();
             $data['latihan'] = $this->Model_latihan->show_data($id);
             $data['materiFooter'] = $this->Model_materi->tampil_data();
             $this->load->view('templates/header-index');
@@ -50,54 +52,61 @@
 
         function latihan($id_materi,$id_latihan)
         {
-            $id_terakhir = $this->Model_latihan->latihan_terakhir($id_latihan,$id_materi);
-            $id_t = $id_terakhir+1;
+            $id_terakhir = $this->Model_latihan->latihan_terakhir($id_materi);
+            $id_l = $id_latihan-1;
             $pilihan = $this->input->post('pilihan');
             $jawaban = $this->input->post('jawaban');
-            $id_l = $id_latihan-1;
-                if($pilihan == $jawaban ){
-                    if ($pilihan != NULL) {
+            
+            if ($pilihan != NULL) {
+                $id_t = $id_terakhir+1;
+                ($pilihan == $jawaban) ? $benar = 'b': $benar = 's';
+                $array = array(
+                    'id_pengguna' => $_SESSION['id_user'],
+                    'id_latihan' => $id_l,
+                    'pilihan' => $pilihan,
+                    'benar' => $benar,
+                );
+                $this->Model_latihan->jawaban($array);
+                    if($id_latihan == $id_t){
+                        $Total = $this->Model_latihan->latihan_total($id_materi)->num_rows();
+                        $benar = $this->Model_latihan->latihan_benar($_SESSION['id_user'])->num_rows();
+                        $nilai = round(($benar / $Total) * 100);
                         $array = array(
-                            'id_pengguna' => $_SESSION['id_pengguna'],
-                            'id_latihan' => $id_l,
-                            'pilihan' => $pilihan,
+                            'user_id' => $_SESSION['id_user'],
+                            'materi_id' => $id_materi,
+                            'status' => 1,
+                            'nilai' => $nilai
                         );
-                        $this->Model_latihan->jawaban($array);
-                            if($id_latihan == $id_t){
-                                $array = array(
-                                    'user_id' => $_SESSION['id_pengguna'],
-                                    'materi_id' => $id_materi,
-                                    'status' => 1,
-                                );
-                                $this->Model_latihan->status($array);
-                                redirect(base_url('Home'));
-                            }
-                            
+                        $this->Model_latihan->status($array);
+                        redirect(base_url('Home'));
                     }
-                    $data['latihan'] = $this->Model_latihan->latihan($id_latihan,$id_materi);
-                    base_url('Home/latihan/'.$id_materi.'/'.$id_latihan);
-                }
-                else{
-                    $data['latihan'] = $this->Model_latihan->latihan($id_l,$id_materi);
-                    redirect(base_url('Home/latihan/'.$id_materi.'/'.$id_l), 'refresh');
-                    
-                }
-                    $this->load->view('templates/header-index');
-                    $this->load->view('edumark/latihan',$data);
-                    $this->load->view('templates/footer-index');
+                    base_url('Home/latihan/'.$id_materi.'/'.$id_latihan);        
+            }
+                $data['latihan'] = $this->Model_latihan->latihan($id_latihan,$id_materi);
+                $this->load->view('templates/header-index');
+                $this->load->view('edumark/latihan',$data);
+                $this->load->view('templates/footer-index');
         }
         function profil($id_user = 0)
         {   
             if ($id_user == 0) {
-                $id_pengguna = $this->session->userdata("id_pengguna");
+                $id_pengguna = $_SESSION['id_user'];
             }
             else{
                 $id_pengguna = $id_user;
             }
             $where = array('id' => $id_pengguna);
             $where1 = $id_pengguna;
-            if (isset($_SESSION['nama'])) {
+            if (isset($_SESSION['nama']) && $_SESSION['role'] == 'siswa') {
                 $data['pengguna'] = $this->Model_pengguna->ambil_data($where);
+                
+            }
+            elseif (isset($_SESSION['nama']) && $_SESSION['role'] == 'guru') {
+                $data['pengguna'] = $this->Model_guru->ambil_data($where);
+            }
+            else {
+                redirect(base_url());
+            }
                 $data['join'] = $this->Model_pengguna->join_data($where1);
                 $data['total_materi'] = $this->Model_materi->total_materi();
                 $data['materiFooter'] = $this->Model_materi->tampil_data();
@@ -106,11 +115,6 @@
                 $this->load->view('edumark/profil',$data);
                 $this->load->view('templates/footer0-index',$data);
                 $this->load->view('templates/footer-index');
-            
-            }
-            else {
-                redirect(base_url());
-            }
         }
 
     }

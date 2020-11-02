@@ -4,28 +4,27 @@
         </div>
         <!-- bradcam_area_end -->
         <?php 
-        foreach ($materi as $key) {}
+        
         $no= 1;
         ini_set('display_errors','off');
-        foreach ($mapel as $data) {?>
+        foreach ($mapel as $data) {
+            ?>
             <div class="whole-wrap">
                 <div class="container box_1170">
                     <div class="section-top-border">
                         <h3 class="mb-30"> <?php echo $no++.".  $data->nama_pel";?></h3>
                             <div class="row">
-                            <?php foreach ($materiFooter as $row) {
-                            if($data->id == $row['id_mapel']){
-                                if($key['id_materi'] == $row['id'] && $key['user_id'] == $_SESSION['id_pengguna']){
-                                    continue;
-                                }?>
-                                <div class="col-md-4">
+                            <?php 
+                            foreach ($materiFooter as $row) {
+                                if($data->id == $row['id_mapel']){
+                                    echo '<div class="col-md-4">
                                     <div class="single-defination">
-                                    <h4><a href="<?= base_url('Home/detail_materi/'.$row['id'])?>"><?= $row['nama_materi']?></a></h4>
-                                        <p><?= $row['deskripsi']?></p>
+                                    <h4><a href=" '.base_url('Home/detail_materi/'.$row['id']).'"> '.$row['nama_materi'].'</a></h4>
+                                        <p> '.$row['deskripsi'].'</p>
                                     </div>
-                                </div>
-                                <?php }
-                           }?>
+                                </div>';
+                                }
+                            }?>
                             </div>
                         </div>
                     </div>

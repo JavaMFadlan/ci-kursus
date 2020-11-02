@@ -59,6 +59,7 @@
             $last_id = $this->db->insert_id();
 
             $data = array(
+                'id_login' => $last_id,
                 'nama' => $nama,
                 'tgl_lahir' => $tgl_lahir,
                 'jk' => $jk,
@@ -98,20 +99,22 @@
         function edit_aksi()
         {
             $id = $this->input->post('id');
+            $id_login= $this->input->post('id_login');
             $nama = $this->input->post('nama');
             $tgl_lahir = $this->input->post('tgl_lahir');
             $jk = $this->input->post('jk');
             $pekerjaan= $this->input->post('pekerjaan');
             $lulusan= $this->input->post('lulusan');
-            $bayaran= $this->input->post('bayaran');
+            $role= $this->input->post('role');
 
             $data = array(
+                'id_login' => $id_login,
                 'nama' => $nama,
                 'tgl_lahir' => $tgl_lahir,
                 'jk' => $jk,
                 'pekerjaan' => $pekerjaan,
                 'lulusan' => $lulusan,
-                'bayaran' => $bayaran
+                'role' => $role,
             );
             $where = array(
                 'id' => $id

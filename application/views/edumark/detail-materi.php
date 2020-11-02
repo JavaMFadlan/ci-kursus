@@ -10,11 +10,19 @@ foreach($latihan as $row){
         break;
     }
 }
+$ds= '';
+foreach ($stop as $key) {
+    var_dump(isset($key));
+    if (isset($key)) {
+        $ds = 'disabled';
+    }
+}
+var_dump($ds);
 // $id = array('id_materi' => $data->id, 'id_latihan' => $id_latihan);
 // $this->session->set_flashdata('id', $id);
 ?>
-     <!-- bradcam_area_start -->
-     <div class="courses_details_banner">
+    <!-- bradcam_area_start -->
+    <div class="courses_details_banner">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6">
@@ -25,7 +33,9 @@ foreach($latihan as $row){
                 <div class="col-xl-6 ">
                     <div class="course_text ">
                         <h3>Mulai Latihan</h3>
-                            <a href="<?= base_url('Home/latihan/'.$data->id.'/'.$id_latihan);?>"><div class="genric-btn primary circle">Mulai</div></a>
+                        <form action="<?= base_url('Home/latihan/'.$data->id.'/'.$id_latihan);?>" method="get">
+                            <input type="submit" class="genric-btn primary circle "<?= $ds?> value="Mulai">
+                        </form>
                     </div>
                 </div>
             </div>

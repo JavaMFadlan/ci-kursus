@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/edumark/css/slicknav.css')?>">
     <link rel="stylesheet" href="<?= base_url('assets/edumark/css/style.css')?>">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <script type='text/javascript' src='<?php echo base_url("assets/ckeditor/ckeditor.js");?>'></script>
 </head>
 <body>
     

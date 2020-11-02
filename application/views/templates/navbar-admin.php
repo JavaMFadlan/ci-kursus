@@ -1,5 +1,5 @@
 <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand" href="<?= base_url('admin')?>">Admin</a>
+    <a class="navbar-brand" href="<?= base_url('admin')?>"><?= $_SESSION['role']?></a>
     <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
     <!-- Navbar-->
     <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-20"></div>
@@ -23,7 +23,7 @@
                     <div class="sb-sidenav-menu-heading">Home</div>
                     <a class="nav-link <?= ($this->uri->segment(1) == 'admin')? 'active' : ''?>" href="<?= base_url('admin')?>">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Index
+                        Dashboard
                     </a>
                     <div class="sb-sidenav-menu-heading">Mata pelajaran</div>
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
@@ -41,12 +41,11 @@
                             <?php }?>
                         </nav>
                     </div>
-                    <div class="sb-sidenav-menu-heading">
+                    <div class="sb-sidenav-menu-heading"></div>
                         <a class="nav-link <?= ($this->uri->segment(1) == 'guru')? 'active' : ''?>" href="<?= base_url('guru')?>">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Guru
                         </a>
-                    </div>
                 </div>
             </div>
             <div class="sb-sidenav-footer">

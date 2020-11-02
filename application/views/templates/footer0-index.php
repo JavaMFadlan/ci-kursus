@@ -1,5 +1,6 @@
+
 <!-- footer -->
-<footer class="footer footer_bg_1">
+<footer class="footer footer_bg_1" style="margin-top:100px; position:absolute; width:100%;">
         <div class="footer_top">
             <div class="container">
                 <div class="row">
@@ -57,3 +58,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- footer -->
+    

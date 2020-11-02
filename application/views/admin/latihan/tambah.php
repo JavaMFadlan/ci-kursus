@@ -1,22 +1,22 @@
-<div id="layoutSidenav_content">
-	<main role="main">
-		<div class="container-fluid">
+<div class="courses_details_banner">
+        <div class="container">
 			<div class="row">
-				<div class="col">
-					<h3>Menambah Data</h3>  
+				<div class="mx-auto">
+					<div class="course_text text-center">
+						<h3>Menambah Data</h3>
+					</div>
 				</div>
 			</div>
 			<form method="post" action="<?= base_url('Latihan/tambah_aksi');?>">
-
 			<input type="hidden" name="jumlah" value="<?= $jumlah?>">
 			<?php for ($i=1; $i <= $jumlah ; $i++) { ?>
 			<input type="hidden" name="id_materi[]" value="<?= $id_materi?>">
-				<div class="card">
+				<div class="card" style="max-height: 600px; overflow-y: auto;">
 					<div class="card-body">
 						<!-- form tambah guru-->
 							<div class="form-group">
-								<label>soal</label>
-								<textarea name="soal[]" class="ckeditor1" cols="30" rows="10"></textarea>
+								<h3>soal</h3>
+								<textarea name="soal[]" class="ckeditor1" cols="30" rows="5"></textarea>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
@@ -47,9 +47,10 @@
 						</div>
 					</div>
 					<?php }?>
-					<button type="submit" class="btn btn-primary">Simpan</button>
-					<a href="<?= base_url('Latihan'); ?>" class="btn btn-danger">Batal</a>
+					<div class="card-footer">
+						<button type="submit" class="genric-btn primary">Simpan</button>
+						<a href="<?= base_url('Latihan'); ?>" class="genric-btn danger float-right">Batal</a>
+					</div>
 				</form>
 			</div>
-		</main>
 </div>

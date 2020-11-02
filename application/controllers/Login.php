@@ -19,6 +19,9 @@
             elseif ($row->role == 'guru') {
                 $row_user = $this->Model_login->guru_where_id($row->id);
             }
+            elseif ($row->role == 'admin') {
+                $row_user = $this->Model_login->pengguna_where_id($row->id);
+            }
             if($cek > 0){
     
                 $data_session = array(

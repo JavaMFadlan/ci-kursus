@@ -6,7 +6,7 @@
         function index()
         {
             $user = $this->session->userdata("nama");
-            if (isset($_SESSION['nama']) && $user == "admin") {
+            if (isset($_SESSION['nama']) && $_SESSION['role'] == "admin" || $_SESSION['role'] == "guru") {
                 $data['mapel'] = $this->Model_mapel->tampil_data()->result();
                 $this->load->view('templates/header');
                 $this->load->view('templates/navbar-admin');

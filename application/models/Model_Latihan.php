@@ -53,13 +53,31 @@
             $query = $this->db->get()->row_array();
             return $query;
         }
-        function latihan_terakhir($where,$where1){
+        function latihan_terakhir($where1){
             $this->db->select('*');
             $this->db->from('lat_soal');
             $this->db->where('id_materi', $where1);
             $query = $this->db->get()->last_row()->id;
             return $query;
         }
+
+        function latihan_total($where1){
+            $this->db->select('*');
+            $this->db->from('lat_soal');
+            $this->db->where('id_materi', $where1);
+            $query = $this->db->get();
+            return $query;
+        }
+
+        function latihan_benar($where1){
+            $this->db->select('*');
+            $this->db->from('jawaban_user');
+            $this->db->where('id_pengguna', $where1);
+            $this->db->where('benar','b');
+            $query = $this->db->get();
+            return $query;
+        }
+
         function Jawaban($data){
             $this->db->insert('jawaban_user',$data);
         }

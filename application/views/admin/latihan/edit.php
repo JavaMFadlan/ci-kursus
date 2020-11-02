@@ -1,9 +1,13 @@
-<!-- bagian page konten -->
-<div id="layoutSidenav_content">
-<main role="main" class="flex-shrink-0">
-	<div class="container-fluid">
-		<title>Edit Data</title>
-            <div class="card">
+<div class="courses_details_banner">
+        <div class="container">
+			<div class="row">
+				<div class="mx-auto">
+					<div class="course_text text-center">
+						<h3>Mengedit Data</h3>
+					</div>
+				</div>
+			</div>
+            <div class="card" style="max-height: 600px; overflow-y: auto;">
             	<?php if( $this->session->flashdata('pesan') ) : ?>
                   <div class="row mt-3">
                     <div class="col-md-6">
@@ -18,7 +22,6 @@
                     </div>
                   </div>
                 <?php endif; ?> 
-                <div class="card-header"><h1>Edit Data</h1></div>
                   <div class="card-body">
 					<form method="post" action="<?= base_url('latihan/edit_aksi');?>">
 						<?php
@@ -28,6 +31,7 @@
 						<input type="hidden" name="id[]" value="<?= $row['id']; ?>">
 						<input type="hidden" name="id_materi[]" value="<?= $row['id_materi']; ?>">
 						<br>
+						<hr style="border: 1px solid #d1c9c9;">
 						<div class="form-group">
 							<h4>soal <?= $no?></h4>
 							<textarea name="soal[]" class="ckeditor1" cols="30" rows="10"><?= $row['soal']?></textarea>
@@ -60,10 +64,9 @@
 							</div>
 							<?php } ?>
 					
-						<button type="submit" class="btn btn-primary ">Update data</button>
-						<a href="<?= base_url('latihan'); ?>" class="btn btn-danger float-right">Batal/Kembali</a>
+						<button type="submit" class="genric-btn primary ">Update data</button>
+						<a href="<?= base_url('latihan'); ?>" class="genric-btn danger float-right">Batal/Kembali</a>
 					</form>
 				</div>
 			
 	</div>
-</main>

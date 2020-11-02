@@ -19,31 +19,36 @@
                   <div class="form-group">
                     <div class="row">
                       <div class="col">
-                        <input type="radio" name="pilihan" value="a" > 
+                        <input type="radio" id="radio_button" onclick="check()" name="pilihan" value="a" > 
                           <label> <?= $latihan['pil_a']?></label> 
                         </div>
                       <div class="col">
-                        <input type="radio" name="pilihan" value="b">
+                        <input type="radio" id="radio_button" name="pilihan" onclick="check()" value="b">
                           <label> <?= $latihan['pil_b']?></label>
                         </div>
                       </div>
 
                     <div class="row">
                       <div class="col">
-                        <input type="radio" name="pilihan" value="c">
+                        <input type="radio" id="radio_button" name="pilihan" onclick="check()" value="c">
                           <label> <?= $latihan['pil_c']?></label>
                         </div>
 
                       <div class="col">
-                        <input type="radio" name="pilihan" value="d">
+                        <input type="radio" id="radio_button" name="pilihan" onclick="check()" value="d">
                           <label> <?= $latihan['pil_d']?></label>
                       </div>
                     </div>
                   </div>
                   <input type="hidden" name="jawaban" value="<?= $latihan['jawaban']?>">
-                <input class="btn btn-primary" type="submit" value="Selanjutnya ">
+                <input class="btn btn-primary" type="submit" id="submitBtn" value="Selanjutnya" disabled>
               </form>
             </div>
           </div>
         </div>
       </div>
+      <script>
+      function check() {
+          document.getElementById("submitBtn").disabled = false; 
+      }
+      </script>

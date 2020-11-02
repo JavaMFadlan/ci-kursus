@@ -34,30 +34,44 @@
             $ret = $query->row();
             return $ret;
         }
-        public function join_data($where1,$if = 0)
+        public function join_data($where1)
         {
             $select = array(
                 'data_pengguna.*',
+                'materi.*',
+                'tugas.*',
                 'materi.id as id_materi',
-                'materi.nama_materi',
-                'materi.deskripsi',
-                'materi.id_mapel',
                 'tugas.id as id_tugas',
-                'tugas.user_id',
-                'tugas.status',
                 'count(tugas.user_id) as Total'
             );
             $this->db->select($select);
             $this->db->from('tugas');
-            $this->db->join('data_pengguna', 'tugas.user_id = data_pengguna.id ');
-            $this->db->join('materi', 'tugas.materi_id = materi.id ');
-            $this->db->where('data_pengguna.id' ,$where1);
-            if($if == 0){
-            $this->db->where('user_id', $where1);
+            $this->db->join('materi', ' materi.id = tugas.materi_id', 'left');
+            $this->db->join('data_pengguna', ' data_pengguna.id = tugas.user_id', 'left');
+            $this->db->where('user_id' ,$where1);
             $this->db->where('status = 1');
-            }
             $query = $this->db->get();
             return $query->result_array();
+            // return $this->db->get_where('tugas',)->result_array();
+        }
+        public function join($where1)
+        {
+            $select = array(
+                'tugas.*',
+                'materi.id_mapel',
+                'materi.nama_materi',
+                'materi.id as id_materi',
+                'tugas.id as id_tugas',
+                'tugas.status',
+            );
+            $this->db->select($select);
+            $this->db->from('tugas');
+            $this->db->join('materi', ' materi.id = tugas.materi_id','right');
+            // $this->db->where('tugas.user_id ', $where1);
+            // $this->db->where('tugas.status = '. NULL);
+                $query = $this->db->get();
+            return $query->result_array();
+            // return $this->db->get('tugas')->result_array();
         }
         public function join_status()
         {

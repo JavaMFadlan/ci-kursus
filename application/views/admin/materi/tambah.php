@@ -1,11 +1,13 @@
-<div id="layoutSidenav_content">
-	<main role="main">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col">
-					<h3>Menambah Data</h3>  
-				</div>
-			</div>
+<div class="courses_details_banner">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto">
+                    <div class="course_text text-center">
+                        <h3>Menambah Data</h3>
+                    </div>
+                </div>
+				
+            </div>
 			<form method="post" action="<?= base_url('Materi/tambah_aksi');?>">
 				<div class="card">
 					<div class="card-body">
@@ -19,8 +21,16 @@
 								</select>
 							</div>
 							<div class="form-group">
+								<label>Tingkatan</label>
+								<select class="form-control" name="tingkatan">
+									<option value="Beginner">Beginner</option>
+									<option value="Advanced">Advanced</option>
+									<option value="Expert">Expert</option>
+								</select>
+							</div>
+							<div class="form-group">
 								<label >Materi</label>
-								<input type="text" name="materi" class="form-control py-2">
+								<input type="text" name="materi" placeholder="materi" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
 							</div>
 							<div class="form-group">
 								<label>Deskripsi</label>
@@ -28,9 +38,11 @@
 							</div>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-primary">Simpan</button>
-					<a href="<?= base_url('Materi'); ?>" class="btn btn-danger">Batal</a>
+					<div class="card-footer">
+						<button type="submit" class="genric-btn primary m-5">Simpan</button>
+						<a href="<?= base_url('profil'); ?>" class="genric-btn danger float-right m-5">Batal</a>
+					</div>
 				</form>
-			</div>
-		</main>
-</div>
+        </div>
+    </div>
+	
