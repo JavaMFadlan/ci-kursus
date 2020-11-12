@@ -50,14 +50,6 @@
 				}?>
            </label>
            </div>
-			<div class="form-group">
-				<label>Pekerjaan</label>
-				<input type="text" name="pekerjaan" class="form-control" value="<?= $row->pekerjaan;?>">
-			</div>
-			<div class="form-group">
-				<label>Lulusan</label>
-				<input type="text" name="lulusan" class="form-control" value="<?= $row->lulusan;?>">
-			</div>
 			<button type="submit" class="btn btn-primary">Update data</button>
 			<a href="<?= base_url('guru'); ?>" class="btn btn-danger">Batal/Kembali</a>
 		</form>

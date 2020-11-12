@@ -23,15 +23,28 @@
                 $row_user = $this->Model_login->pengguna_where_id($row->id);
             }
             if($cek > 0){
-    
-                $data_session = array(
-                    'id' => $row->id,
-                    'id_user' => $row_user->id,
-                    'role' => $row->role,
-                    'nama' => $row->username,
-                    'email' => $email,
-                    'status' => "login"
-                    );
+                if ($row->role == 'siswa') {
+                    $data_session = array(
+                        'id' => $row->id,
+                        'id_user' => $row_user->id,
+                        'tingkatan' => $row_user->tingkatan,
+                        'role' => $row->role,
+                        'nama' => $row->username,
+                        'email' => $email,
+                        'status' => "login"
+                        );
+                }
+                else {
+                    $data_session = array(
+                        'id' => $row->id,
+                        'id_user' => $row_user->id,
+                        'role' => $row->role,
+                        'nama' => $row->username,
+                        'email' => $email,
+                        'status' => "login"
+                        );
+                }
+                
     
                 $this->session->set_userdata($data_session);
                 
@@ -40,6 +53,12 @@
                     redirect(base_url('Admin'));
                 }
                 else {
+                    $d = $this->Model_pengguna->trans_data($_SESSION['id_user'])->result_array();
+                    $f = date('Y-m-d',strtotime('now'));
+                    $w = $d[0]['tanggal_selesai'];
+                        if ($f == $w) {
+                            $this->Model_pengguna->trans_delete($_SESSION['id_user']);
+                        }
                     redirect(base_url());
                 }
                 
@@ -78,7 +97,7 @@
             $this->Model_login->register($data);
             $last_id = $this->db->insert_id();
                 
-               $data1 = array(
+            $data1 = array(
                 'id_login' => $last_id,
                 'nama' => $nama,
                 'email' => $email,

@@ -1,5 +1,3 @@
-    <?php  var_dump($_SESSION);?>
-
     <!-- slider_area_start -->
     <div class="slider_area ">
         <div class="single_slider d-flex align-items-center justify-content-center slider_bg_1">
@@ -69,7 +67,6 @@
                             <i class="flaticon-crown"></i>
                         </div>
                         <h3>Premium Quality</h3>
-                        
                     </div>
                 </div>
             </div>

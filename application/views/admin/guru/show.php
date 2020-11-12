@@ -35,18 +35,6 @@
                 <input type="radio" name="jk" value="laki-laki" readonly>   Laki-laki
            </label>
            </div>
-			<div class="form-group">
-				<label>Pekerjaan</label>
-				<input type="text" name="pekerjaan" class="form-control" value="<?= $row->pekerjaan;?>"readonly>
-			</div>
-			<div class="form-group">
-				<label>Lulusan</label>
-				<input type="text" name="lulusan" class="form-control" value="<?= $row->lulusan;?>" readonly>
-			</div>
-			<div class="form-group">
-				<label>bayaran</label>
-				<input type="number" name="bayaran" class="form-control" value="<?= $row->bayaran;?>" readonly>
-			</div>
 			<a href="<?= base_url('guru'); ?>" class="btn btn-danger">Kembali</a>
 		</form>
 		<?php } ?>

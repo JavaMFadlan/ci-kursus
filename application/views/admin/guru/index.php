@@ -47,7 +47,6 @@
                                                 <th>Nama </th>
                                                 <th>Tanggal Lahir</th>
                                                 <th>Jenis Kelamin</th>
-                                                <th>Lulusan</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -61,10 +60,8 @@
                                                 <td><?= $row->nama; ?></td>
                                                 <td><?= $row->tgl_lahir; ?></td>
                                                 <td><?= $row->jk; ?></td>
-                                                <td><?= $row->lulusan; ?></td>
                                                 <td>
-                                                    <a href="<?= base_url('guru/show/').$row->id;?>" class="btn btn-info">Show</a>
-                                                    <a href="<?= base_url('guru/edit/').$row->id;?>" class="btn btn-warning">Edit</a>
+                                                    <a href="<?= base_url('Home/profil/').$row->id;?>" class="btn btn-info">Show</a>
                                                     <a href="<?= base_url('guru/delete/').$row->id;?>" class="btn btn-danger">Delete</a>
                                                 </td>
                                             </tr>

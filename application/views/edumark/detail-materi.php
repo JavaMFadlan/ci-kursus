@@ -1,5 +1,6 @@
-
 <?php
+ini_set('display_errors','off');
+
 foreach($materi as $data){
     $nama = $data->nama_materi;
     $deskripsi = $data->deskripsi;
@@ -10,16 +11,17 @@ foreach($latihan as $row){
         break;
     }
 }
-$ds= '';
+$ds ='<input type="submit" class="genric-btn primary circle" value="Mulai">';
+
+if (empty($latihan)) {
+    $ds = '<h4>soal latihan sedang dibuat</h4>';
+}
+
 foreach ($stop as $key) {
-    var_dump(isset($key));
     if (isset($key)) {
-        $ds = 'disabled';
+        $ds = '<h4>anda telah mengerjakan materi ini</h4>';
     }
 }
-var_dump($ds);
-// $id = array('id_materi' => $data->id, 'id_latihan' => $id_latihan);
-// $this->session->set_flashdata('id', $id);
 ?>
     <!-- bradcam_area_start -->
     <div class="courses_details_banner">
@@ -34,7 +36,7 @@ var_dump($ds);
                     <div class="course_text ">
                         <h3>Mulai Latihan</h3>
                         <form action="<?= base_url('Home/latihan/'.$data->id.'/'.$id_latihan);?>" method="get">
-                            <input type="submit" class="genric-btn primary circle "<?= $ds?> value="Mulai">
+                            <?= $ds?>
                         </form>
                     </div>
                 </div>

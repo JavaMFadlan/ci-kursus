@@ -36,23 +36,11 @@
         }
         public function join_data($where1)
         {
-            $select = array(
-                'data_pengguna.*',
-                'materi.*',
-                'tugas.*',
-                'materi.id as id_materi',
-                'tugas.id as id_tugas',
-                'count(tugas.user_id) as Total'
-            );
-            $this->db->select($select);
+            $this->db->select('*');
             $this->db->from('tugas');
-            $this->db->join('materi', ' materi.id = tugas.materi_id', 'left');
-            $this->db->join('data_pengguna', ' data_pengguna.id = tugas.user_id', 'left');
             $this->db->where('user_id' ,$where1);
-            $this->db->where('status = 1');
             $query = $this->db->get();
-            return $query->result_array();
-            // return $this->db->get_where('tugas',)->result_array();
+            return $query;
         }
         public function join($where1)
         {
@@ -66,12 +54,10 @@
             );
             $this->db->select($select);
             $this->db->from('tugas');
-            $this->db->join('materi', ' materi.id = tugas.materi_id','right');
-            // $this->db->where('tugas.user_id ', $where1);
-            // $this->db->where('tugas.status = '. NULL);
-                $query = $this->db->get();
+            $this->db->join('materi', 'materi.id = tugas.materi_id');
+            $this->db->where('tugas.user_id', $where1);
+            $query = $this->db->get();
             return $query->result_array();
-            // return $this->db->get('tugas')->result_array();
         }
         public function join_status()
         {
@@ -90,6 +76,37 @@
             $this->db->group_by('tugas.user_id');
             $query = $this->db->get();
             return $query->result_array();
+        }
+
+        //Transaksi
+
+        public function simpan_transaksi($data)
+        {
+            $this->db->insert('transaksi', $data);
+        }
+
+        public function trans_data($id)
+        {
+            $this->db->select('*');
+            $this->db->from('transaksi');
+            $this->db->where('transaksi.id_pengguna', $id);
+            $query = $this->db->get();
+            return $query;
+        }
+
+        public function trans_update($id)
+        {
+            $this->db->select('*');
+            $this->db->from('transaksi');
+            $this->db->where('transaksi.id_pengguna', $id);
+            $query = $this->db->get();
+            return $query;
+        }
+
+        public function trans_delete($id)
+        {
+            $this->db->where('id_pengguna', $id);
+            $this->db->delete('data_pengguna',array('id_pengguna' => $id));
         }
 
     }

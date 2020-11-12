@@ -69,9 +69,11 @@
             return $query;
         }
 
-        function latihan_benar($where1){
+        function latihan_benar($where1, $id_materi){
             $this->db->select('*');
             $this->db->from('jawaban_user');
+            $this->db->join('lat_soal','jawaban_user.id_latihan  =  lat_soal.id');
+            $this->db->where('lat_soal.id_materi', $id_materi);
             $this->db->where('id_pengguna', $where1);
             $this->db->where('benar','b');
             $query = $this->db->get();

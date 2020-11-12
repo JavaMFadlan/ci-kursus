@@ -51,6 +51,7 @@
 							
 						</div>
 						<button type="submit" class="genric-btn primary ">Update data</button>
+						<a href="<?= base_url('latihan/edit/'.$row->id); ?>" class="genric-btn warning ml-3">edit latihan</a>
 						<a href="<?= base_url('materi'); ?>" class="genric-btn danger float-right">Batal/Kembali</a>
 					</form>
 				</div>

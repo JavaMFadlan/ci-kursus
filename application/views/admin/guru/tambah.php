@@ -27,14 +27,6 @@
 								<input type="radio" name="jk" value="laki-laki">   Laki-laki
 								</label>
 							</div>
-							<div class="form-group">
-								<label>Pekerjaan</label>
-								<input type="text" name="pekerjaan" class="form-control py-2">
-							</div>
-								<div class="form-group">
-								<label>Lulusan</label>
-								<input type="text" name= "lulusan" class="form-control py-2">
-							</div>
 								<input type="hidden" name="role" value="guru">
 						</div>
 					</div>

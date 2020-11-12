@@ -1,8 +1,13 @@
 <!-- bagian page konten -->
-<div id="layoutSidenav_content">
-<main role="main" class="flex-shrink-0">
-	<div class="container-fluid">
-		<title>Lihat data</title>
+<div class="courses_details_banner">
+        <div class="container">
+			<div class="row">
+				<div class="mx-auto">
+					<div class="course_text text-center">
+						<h3>Mengedit Data</h3>
+					</div>
+				</div>
+			</div>
             <div class="card">
                 <div class="card-header">
 					<h2>Lihat Data</h2>
@@ -50,5 +55,5 @@
 					</form>
 				</div>
 			</div>
-	</main>
+	</div>
 </div>			

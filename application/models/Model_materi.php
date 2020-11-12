@@ -3,10 +3,22 @@
     class Model_materi extends CI_Model
     {
 
+        function tampil_index(){
+            return $this->db->get('materi');
+        }
+
         function tampil_data(){
             $this->db->select('*');
             $this->db->from('mata_pelajaran');
             $this->db->join('materi', 'mata_pelajaran.id = materi.id_mapel');
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+
+        function tampil_data_guru($id_guru){
+            $this->db->select('*');
+            $this->db->from('materi');
+            $this->db->where('materi.id_guru', $id_guru);
             $query = $this->db->get();
             return $query->result_array();
         }

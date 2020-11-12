@@ -57,4 +57,4 @@ $route['admin'] = 'Admin';
 $route['login'] = 'Login';
 $route['materi'] = 'Materi';
 $route['latihan'] = 'Latihan';
-$route['pengguna'] = 'pengguna';
+$route['pengguna'] = 'Pengguna';

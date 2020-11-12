@@ -5,21 +5,30 @@
         <!-- bradcam_area_end -->
         <?php 
         
-        $no= 1;
         ini_set('display_errors','off');
         foreach ($mapel as $data) {
             ?>
             <div class="whole-wrap">
                 <div class="container box_1170">
-                    <div class="section-top-border">
-                        <h3 class="mb-30"> <?php echo $no++.".  $data->nama_pel";?></h3>
-                            <div class="row">
+                    <div class="section-top-border text-center">
+                        <h1 class="mb-30"> <?= $data->nama_pel?></h1>
+                            <div class="row mb-30">
                             <?php 
+                            $no= 0;
                             foreach ($materiFooter as $row) {
+                                $no++;
+                                (isset($_SESSION['status']))? $f = ''.base_url('Home/detail_materi/'.$row['id']) : $f= '#test-form ';
+                                (isset($_SESSION['status']))? $g = '' : $g = 'login popup-with-form';
+                                if ($_SESSION['tingkatan'] != $row['tingkatan'] && $_SESSION['role'] == 'siswa'){
+                                    continue;
+                                }
+                                if (empty($trans) && $no > 6 && $_SESSION['role'] == 'siswa') {
+                                    break;
+                                }
                                 if($data->id == $row['id_mapel']){
-                                    echo '<div class="col-md-4">
+                        echo    '<div class="col-md-4 mb-30">
                                     <div class="single-defination">
-                                    <h4><a href=" '.base_url('Home/detail_materi/'.$row['id']).'"> '.$row['nama_materi'].'</a></h4>
+                                    <h4><a href=" '.$f.'" class = "'.$g.'"> '.$row['nama_materi'].'</a></h4>
                                         <p> '.$row['deskripsi'].'</p>
                                     </div>
                                 </div>';

@@ -33,8 +33,8 @@
                                 Alamat
                             </h3>
                             <p>
-                                Jl>  <br>
-                                +10 367 467 8934 <br>
+                                Jl. Cibaduyut Raya, Cangkuang Kulon, Kec. Dayeuhkolot, Kota Bandung, Jawa Barat 40265  <br>
+                                +62-8122-7714-950 <br>
                                 edumark@contact.com
                             </p>
                         </div>

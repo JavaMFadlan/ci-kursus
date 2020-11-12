@@ -16,7 +16,19 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a class="<?= ($this->uri->segment(1) == '')? 'active' : ''?>" href="<?=base_url()?>">Home</a></li>
-                                        <li><a class="<?= ($this->uri->segment(2) == 'pelajaran')? 'active' : ''?>" href="<?=base_url('Home/pelajaran')?>">Pelajaran</a></li>
+                                        <li><a class="<?= ($this->uri->segment(2) == 'pelajaran')? 'active' : ''?>" href="<?=base_url('Home/pelajaran')?>">pelajaran <i class="ti-angle-down"></i></a>
+                                            <ul class="submenu">
+                                            <?php
+                                            $no = 0;
+                                            foreach ($mapelNavbar as $key) {
+                                                if ($no++ == 3) {
+                                                    break;
+                                                }
+                                                ?>
+												<li><a href="<?=base_url('Home/pelajaran/'. $key['id'])?>"><?= $key['nama_pel']?></a></li>
+                                            <?php }?>
+                                            </ul>
+                                        </li>
                                     </ul>
                                 </nav>
                             </div>
@@ -32,8 +44,9 @@
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                             <?php if($_SESSION['nama'] == "admin"){?>
                                             <a class="dropdown-item" href="<?= base_url('admin')?>">Admin</a>
-                                                <?php }?>
+                                                <?php }else{?>
                                             <a class="dropdown-item <?= ($this->uri->segment(1) == 'profil')? 'active' : ''?>" href="<?= base_url('Home/profil')?>">profil</a>
+                                                <?php }?>
                                             <div class="dropdown-divider"></div>
                                             <a class="dropdown-item" href="<?= base_url('Login/logout')?>">Keluar</a>
                                         </div>

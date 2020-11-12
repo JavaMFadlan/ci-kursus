@@ -99,32 +99,35 @@
         function edit_aksi()
         {
             $id = $this->input->post('id');
-            $id_login= $this->input->post('id_login');
+
             $nama = $this->input->post('nama');
             $tgl_lahir = $this->input->post('tgl_lahir');
             $jk = $this->input->post('jk');
-            $pekerjaan= $this->input->post('pekerjaan');
-            $lulusan= $this->input->post('lulusan');
-            $role= $this->input->post('role');
 
             $data = array(
-                'id_login' => $id_login,
                 'nama' => $nama,
                 'tgl_lahir' => $tgl_lahir,
                 'jk' => $jk,
-                'pekerjaan' => $pekerjaan,
-                'lulusan' => $lulusan,
-                'role' => $role,
             );
             $where = array(
                 'id' => $id
             );
     
-                $this->Model_guru->update_data($where, $data);
-                $this->session->set_flashdata('pesan','Diubah');
+            $this->Model_guru->update_data($where, $data);
 
-    
-                redirect('guru');
+            $id_login= $this->input->post('id_login');
+            $username = $this->input->post('username');
+            $data1 = array(
+                'username' => $username,
+            );
+            $where1 = array(
+                'id' => $id_login
+            );
+
+            $this->Model_login->update_data($where1, $data1);
+
+
+            redirect(base_url('Home/profil/'.$_SESSION['id_user']));
 
         }
 
